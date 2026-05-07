@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School for Schools Summit 2026</title>
+  <style>
+    :root {
+      --orange: #ff6b12;
+      --purple: #2b0f45;
+      --text: #2f2f2f;
+      --white: #ffffff;
+      --hero-height: clamp(430px, 58vw, 720px);
+      --mountain-width: max(100vw, 1500px);
+      --cloud-width: max(100vw, 1460px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 200vh;
+      background: var(--white);
+      color: var(--text);
+      font-family: "DIN Pro", "DINPro", "FF DIN", "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: var(--hero-height);
+      overflow: hidden;
+      isolation: isolate;
+      background: #0b68b9;
+    }
+
+    .layer {
+      position: absolute;
+      left: 50%;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform;
+    }
+
+    .mountains-back {
+      z-index: 1;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform: translate3d(-50%, calc(var(--scroll) * 0.05px), 0) scale(1.01);
+    }
+
+    .clouds {
+      z-index: 2;
+      top: clamp(16px, 3.2vw, 44px);
+      width: var(--cloud-width);
+      height: auto;
+      transform: translate3d(calc(-50% + var(--scroll) * -0.035px), calc(var(--scroll) * 0.11px), 0);
+    }
+
+    .mountains-front {
+      z-index: 3;
+      bottom: clamp(-150px, -8vw, -52px);
+      width: var(--mountain-width);
+      max-width: none;
+      height: auto;
+      transform: translate3d(-50%, calc(var(--scroll) * -0.07px), 0);
+    }
+
+    .mist {
+      position: absolute;
+      z-index: 4;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: clamp(150px, 24vw, 310px);
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.62) 36%,
+        rgba(255, 255, 255, 0.94) 72%,
+        #ffffff 100%
+      );
+      pointer-events: none;
+    }
+
+    .invite {
+      position: relative;
+      z-index: 5;
+      min-height: 72vh;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: minmax(24px, 1fr) minmax(280px, 1080px) minmax(24px, 1fr);
+      padding: clamp(64px, 8vw, 120px) 0 clamp(80px, 10vw, 130px);
+    }
+
+    .invite-inner {
+      grid-column: 2;
+      max-width: 760px;
+      padding-left: clamp(0px, 5vw, 72px);
+    }
+
+    .copy {
+      font-size: clamp(25px, 2.75vw, 45px);
+      line-height: 1.34;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .copy p + p {
+      margin-top: clamp(28px, 4vw, 42px);
+    }
+
+    .soon {
+      margin-top: clamp(38px, 5vw, 56px);
+      font-size: clamp(25px, 2.45vw, 40px);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      color: var(--orange);
+      font-weight: 400;
+    }
+
+    .brand-lockup {
+      width: clamp(250px, 32vw, 420px);
+      margin: clamp(72px, 8vw, 96px) auto 0;
+      display: block;
+    }
+
+    .spacer {
+      height: 45vh;
+      background: linear-gradient(#ffffff, #fafafa);
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --hero-height: clamp(390px, 72vw, 560px);
+        --mountain-width: max(135vw, 1060px);
+        --cloud-width: max(128vw, 1040px);
+      }
+
+      .mountains-front {
+        bottom: clamp(-92px, -10vw, -42px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --hero-height: clamp(360px, 95vw, 510px);
+        --mountain-width: max(190vw, 780px);
+        --cloud-width: max(170vw, 760px);
+      }
+
+      .clouds {
+        top: 28px;
+      }
+
+      .mountains-front {
+        bottom: clamp(-72px, -11vw, -34px);
+      }
+
+      .invite {
+        grid-template-columns: 24px 1fr 24px;
+        padding-top: 58px;
+      }
+
+      .invite-inner {
+        padding-left: 0;
+      }
+
+      .copy br {
+        display: none;
+      }
+
+      .brand-lockup {
+        width: min(310px, 82vw);
+      }
+    }
+  </style>
+</head>
+<body style="--scroll: 0;">
+  <main>
+    <section class="hero" aria-label="SFS Summit mountain parallax hero">
+      <img class="layer mountains-back" src="Mountains-1.png" alt="Clear blue sky" />
+      <img class="layer clouds" src="clouds 1.png" alt="Soft white clouds" />
+      <img class="layer mountains-front" src="Mountains-2.png" alt="Snow capped mountain peaks" />
+      <div class="mist" aria-hidden="true"></div>
+    </section>
+
+    <section class="invite">
+      <div class="invite-inner">
+        <div class="copy">
+          <p>For the educators who have<br />conquered many peaks,</p>
+          <p>And are looking for the next one.</p>
+        </div>
+
+        <p class="soon">See you soon.</p>
+
+        <img class="brand-lockup" src="Logo.png" alt="School for Schools Summit 2026" />
+      </div>
+    </section>
+
+    <div class="spacer" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const root = document.body;
+    let ticking = false;
+
+    function updateParallax() {
+      const y = window.scrollY || window.pageYOffset;
+      root.style.setProperty('--scroll', Math.min(y, 1200).toFixed(2));
+      ticking = false;
+    }
+
+    function requestTick() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }
+
+    updateParallax();
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('resize', requestTick);
+  </script>
+</body>
+</html>
