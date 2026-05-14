@@ -8,9 +8,14 @@
     :root {
       --orange: #ff6b12;
       --purple: #2b0f45;
+      --blue: #0b68b9;
+      --light-blue: #eaf5ff;
+      --cream: #fbf7ef;
       --text: #2f2f2f;
+      --muted: #6c6c6c;
+      --line: rgba(47, 47, 47, 0.14);
       --white: #ffffff;
-      --hero-height: clamp(430px, 58vw, 720px);
+      --hero-height: clamp(540px, 62vw, 800px);
       --mountain-width: max(100vw, 1500px);
       --cloud-width: max(100vw, 1460px);
     }
@@ -33,12 +38,51 @@
       overflow-x: hidden;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-nav {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px clamp(24px, 5vw, 72px);
+      color: var(--white);
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+
+    .nav-brand,
+    .nav-links {
+      pointer-events: auto;
+    }
+
+    .nav-brand {
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(16px, 2vw, 32px);
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .hero {
       position: relative;
       height: var(--hero-height);
       overflow: hidden;
       isolation: isolate;
-      background: #0b68b9;
+      background: var(--blue);
     }
 
     .layer {
@@ -82,70 +126,424 @@
       left: 0;
       right: 0;
       bottom: -1px;
-      height: clamp(150px, 24vw, 310px);
+      height: clamp(180px, 26vw, 340px);
       background: linear-gradient(
         to bottom,
         rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.62) 36%,
+        rgba(255, 255, 255, 0.58) 34%,
         rgba(255, 255, 255, 0.94) 72%,
         #ffffff 100%
       );
       pointer-events: none;
     }
 
-    .invite {
-      position: relative;
-      z-index: 5;
-      min-height: 72vh;
-      background: var(--white);
-      display: grid;
-      grid-template-columns: minmax(24px, 1fr) minmax(280px, 1080px) minmax(24px, 1fr);
-      padding: clamp(64px, 8vw, 120px) 0 clamp(80px, 10vw, 130px);
+    .hero-copy {
+      position: absolute;
+      z-index: 6;
+      left: clamp(24px, 7vw, 124px);
+      bottom: clamp(54px, 8vw, 112px);
+      max-width: 650px;
+      color: var(--text);
+      transform: translateY(calc(var(--scroll) * -0.025px));
     }
 
-    .invite-inner {
-      grid-column: 2;
-      max-width: 760px;
-      padding-left: clamp(0px, 5vw, 72px);
+    .eyebrow {
+      color: var(--orange);
+      font-size: clamp(18px, 1.6vw, 25px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
-    .copy {
-      font-size: clamp(25px, 2.75vw, 45px);
-      line-height: 1.34;
+    .hero-title {
+      font-size: clamp(42px, 6vw, 96px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      margin-top: 28px;
+      font-size: clamp(24px, 2.8vw, 44px);
+      line-height: 1.25;
       letter-spacing: 0.01em;
       font-weight: 400;
       color: var(--text);
     }
 
-    .copy p + p {
-      margin-top: clamp(28px, 4vw, 42px);
+    .hero-logo {
+      position: absolute;
+      z-index: 6;
+      right: clamp(24px, 7vw, 112px);
+      bottom: clamp(52px, 8vw, 100px);
+      width: clamp(240px, 26vw, 430px);
     }
 
-    .soon {
-      margin-top: clamp(38px, 5vw, 56px);
-      font-size: clamp(25px, 2.45vw, 40px);
-      line-height: 1.2;
-      letter-spacing: 0.01em;
+    .section {
+      position: relative;
+      padding: clamp(82px, 10vw, 150px) clamp(24px, 6vw, 96px);
+    }
+
+    .section-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-kicker {
       color: var(--orange);
+      font-size: 18px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      max-width: 820px;
+      font-size: clamp(40px, 5.8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
       font-weight: 400;
     }
 
-    .brand-lockup {
-      width: clamp(250px, 32vw, 420px);
-      margin: clamp(72px, 8vw, 96px) auto 0;
-      display: block;
+    .section-intro {
+      max-width: 650px;
+      margin-top: 28px;
+      font-size: clamp(20px, 2vw, 30px);
+      line-height: 1.38;
+      color: var(--muted);
     }
 
-    .spacer {
-      height: 45vh;
-      background: linear-gradient(#ffffff, #fafafa);
+    .location-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(300px, 1.12fr);
+      gap: clamp(36px, 6vw, 86px);
+      align-items: end;
+    }
+
+    .location-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: clamp(28px, 4vw, 52px);
+      background: linear-gradient(135deg, #ffffff, #fff8ef);
+      overflow: hidden;
+      min-height: 430px;
+    }
+
+    .location-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -120px auto;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: rgba(255, 107, 18, 0.12);
+    }
+
+    .location-name {
+      margin-top: 80px;
+      font-size: clamp(42px, 5vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: var(--purple);
+      font-weight: 400;
+    }
+
+    .location-meta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      border: 1px solid rgba(43, 15, 69, 0.18);
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: var(--purple);
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .location-copy {
+      font-size: clamp(22px, 2.5vw, 36px);
+      line-height: 1.28;
+      color: var(--text);
+    }
+
+    .location-copy span {
+      color: var(--orange);
+    }
+
+    .schedule {
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .schedule .section-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline {
+      margin-top: clamp(54px, 7vw, 88px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 44px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background: rgba(255, 107, 18, 0.25);
+      transform: scaleX(var(--timeline-progress, 0.12));
+      transform-origin: left;
+      transition: transform 550ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .day-card {
+      position: relative;
+      z-index: 2;
+      min-height: 420px;
+      padding: 92px clamp(22px, 3vw, 36px) 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(47, 47, 47, 0.08);
+      box-shadow: 0 20px 70px rgba(43, 15, 69, 0.07);
+      transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 450ms ease, background 450ms ease;
+      cursor: default;
+    }
+
+    .day-card::before {
+      content: attr(data-day);
+      position: absolute;
+      top: 24px;
+      left: clamp(22px, 3vw, 36px);
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--orange);
+      font-size: 18px;
+      transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1), background 450ms ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-18px);
+      box-shadow: 0 36px 100px rgba(43, 15, 69, 0.13);
+      background: #ffffff;
+    }
+
+    .day-card:hover::before {
+      transform: scale(1.18) rotate(-8deg);
+      background: var(--purple);
+    }
+
+    .timeline:has(.day-card:nth-child(1):hover) { --timeline-progress: 0.24; }
+    .timeline:has(.day-card:nth-child(2):hover) { --timeline-progress: 0.58; }
+    .timeline:has(.day-card:nth-child(3):hover) { --timeline-progress: 1; }
+
+    .day-date {
+      color: var(--orange);
+      font-size: 17px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .day-title {
+      font-size: clamp(32px, 3.4vw, 52px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+      color: var(--purple);
+      margin-bottom: 26px;
+    }
+
+    .day-card ul {
+      list-style: none;
+      display: grid;
+      gap: 18px;
+    }
+
+    .day-card li {
+      font-size: clamp(18px, 1.5vw, 22px);
+      line-height: 1.35;
+      color: var(--muted);
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .day-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .speakers {
+      background: var(--white);
+    }
+
+    .speaker-grid {
+      margin-top: clamp(54px, 7vw, 88px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .speaker-card {
+      border-radius: 34px;
+      overflow: hidden;
+      background: #f6f6f6;
+      border: 1px solid var(--line);
+      transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 420ms ease;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 28px 90px rgba(43, 15, 69, 0.12);
+    }
+
+    .speaker-image {
+      height: clamp(320px, 34vw, 450px);
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .speaker-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      filter: saturate(0.92) contrast(1.02);
+    }
+
+    .speaker-card:nth-child(1) .speaker-image img { object-position: 50% 36%; }
+    .speaker-card:nth-child(2) .speaker-image img { object-position: 35% 42%; transform: scale(1.12); }
+    .speaker-card:nth-child(3) .speaker-image img { object-position: 62% 40%; transform: scale(1.08); }
+
+    .speaker-card:hover .speaker-image img {
+      transform: scale(1.16);
+    }
+
+    .speaker-content {
+      padding: clamp(26px, 3vw, 36px);
+      background: var(--white);
+    }
+
+    .speaker-name {
+      font-size: clamp(30px, 3vw, 44px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      font-weight: 400;
+      color: var(--purple);
+    }
+
+    .speaker-role {
+      margin-top: 10px;
+      color: var(--orange);
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .speaker-bio {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: clamp(17px, 1.35vw, 21px);
+      line-height: 1.42;
+    }
+
+    .closing {
+      background: var(--purple);
+      color: var(--white);
+      text-align: center;
+      padding: clamp(92px, 12vw, 170px) 24px;
+    }
+
+    .closing img {
+      width: clamp(260px, 35vw, 460px);
+      filter: brightness(0) invert(1);
+      opacity: 0.96;
+      margin-bottom: 38px;
+    }
+
+    .closing h2 {
+      font-size: clamp(42px, 6vw, 92px);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      font-weight: 400;
+    }
+
+    .closing p {
+      margin: 28px auto 0;
+      max-width: 620px;
+      font-size: clamp(20px, 2vw, 30px);
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    @media (max-width: 1000px) {
+      .hero-logo {
+        display: none;
+      }
+
+      .location-grid,
+      .timeline,
+      .speaker-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        top: 0;
+        bottom: 0;
+        left: 22px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        transform: scaleY(var(--timeline-progress, 0.12));
+        transform-origin: top;
+      }
+
+      .timeline:has(.day-card:nth-child(1):hover) { --timeline-progress: 0.24; }
+      .timeline:has(.day-card:nth-child(2):hover) { --timeline-progress: 0.58; }
+      .timeline:has(.day-card:nth-child(3):hover) { --timeline-progress: 1; }
+
+      .day-card {
+        min-height: auto;
+      }
+
+      .speaker-grid {
+        max-width: 680px;
+      }
     }
 
     @media (max-width: 900px) {
       :root {
-        --hero-height: clamp(390px, 72vw, 560px);
+        --hero-height: clamp(500px, 86vw, 680px);
         --mountain-width: max(135vw, 1060px);
         --cloud-width: max(128vw, 1040px);
+      }
+
+      .site-nav {
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: none;
       }
 
       .mountains-front {
@@ -155,7 +553,7 @@
 
     @media (max-width: 560px) {
       :root {
-        --hero-height: clamp(360px, 95vw, 510px);
+        --hero-height: clamp(540px, 128vw, 700px);
         --mountain-width: max(190vw, 780px);
         --cloud-width: max(170vw, 760px);
       }
@@ -168,48 +566,160 @@
         bottom: clamp(-72px, -11vw, -34px);
       }
 
-      .invite {
-        grid-template-columns: 24px 1fr 24px;
-        padding-top: 58px;
+      .hero-copy {
+        left: 24px;
+        right: 24px;
+        bottom: 54px;
       }
 
-      .invite-inner {
-        padding-left: 0;
+      .location-card {
+        min-height: 360px;
       }
 
-      .copy br {
-        display: none;
+      .location-name {
+        margin-top: 64px;
       }
 
-      .brand-lockup {
-        width: min(310px, 82vw);
+      .speaker-image {
+        height: 360px;
       }
     }
   </style>
 </head>
 <body style="--scroll: 0;">
-  <main>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="#top" class="nav-brand">SFS Summit</a>
+    <div class="nav-links">
+      <a href="#location">Location</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+    </div>
+  </nav>
+
+  <main id="top">
     <section class="hero" aria-label="SFS Summit mountain parallax hero">
       <img class="layer mountains-back" src="Mountains-1.png" alt="Clear blue sky" />
       <img class="layer clouds" src="clouds 1.png" alt="Soft white clouds" />
       <img class="layer mountains-front" src="Mountains-2.png" alt="Snow capped mountain peaks" />
       <div class="mist" aria-hidden="true"></div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Invite Only · September 2026</p>
+        <h1 class="hero-title">For educators looking for the next peak.</h1>
+        <p class="hero-subtitle">Three days of leadership, learning, and conversations for the people shaping what schools become next.</p>
+      </div>
+
+      <img class="hero-logo" src="Logo.png" alt="School for Schools Summit 2026" />
     </section>
 
-    <section class="invite">
-      <div class="invite-inner">
-        <div class="copy">
-          <p>For the educators who have <br />conquered many peaks,</p>
-          <p>And are looking for the next one.</p>
+    <section class="section location" id="location">
+      <div class="section-inner location-grid">
+        <div>
+          <p class="section-kicker">Location</p>
+          <h2 class="section-title">A setting built for pause, perspective, and possibility.</h2>
+          <p class="section-intro">The summit opens inside one of New Delhi’s most iconic five-star addresses, bringing together a select circle of education leaders in a space designed for thoughtful conversation.</p>
         </div>
 
-        <p class="soon">See you soon.</p>
-
-        <img class="brand-lockup" src="Logo.png" alt="School for Schools Summit 2026" />
+        <div class="location-card">
+          <p class="section-kicker">New Delhi</p>
+          <h3 class="location-name">The Imperial</h3>
+          <div class="location-meta">
+            <span class="pill">Five-star heritage hotel</span>
+            <span class="pill">Janpath, New Delhi</span>
+            <span class="pill">Curated leadership forum</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="spacer" aria-hidden="true"></div>
+    <section class="section schedule" id="schedule">
+      <div class="section-inner">
+        <p class="section-kicker">Schedule</p>
+        <h2 class="section-title">A three-day climb from insight to action.</h2>
+        <p class="section-intro">From arrival and orientation to closed-room keynotes, leadership workshops, and future-roadmap sessions, each day is designed to build momentum.</p>
+
+        <div class="timeline">
+          <article class="day-card" data-day="1">
+            <p class="day-date">Friday · 11 September 2026</p>
+            <h3 class="day-title">Arrival & Opening</h3>
+            <ul>
+              <li>Private registration and welcome experience.</li>
+              <li>Opening address on the changing role of school leadership.</li>
+              <li>Invite-only networking dinner for school leaders.</li>
+            </ul>
+          </article>
+
+          <article class="day-card" data-day="2">
+            <p class="day-date">Saturday · 12 September 2026</p>
+            <h3 class="day-title">Keynotes & Workshops</h3>
+            <ul>
+              <li>Keynote sessions by leading educators and institution builders.</li>
+              <li>Breakout conversations on operations, culture, and technology.</li>
+              <li>Hands-on leadership labs for practical school transformation.</li>
+            </ul>
+          </article>
+
+          <article class="day-card" data-day="3">
+            <p class="day-date">Sunday · 13 September 2026</p>
+            <h3 class="day-title">Roadmap & Farewell</h3>
+            <ul>
+              <li>Closing keynote on future-ready institutions.</li>
+              <li>Shared roadmap session for the year ahead.</li>
+              <li>Farewell brunch and final reflections.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section speakers" id="speakers">
+      <div class="section-inner">
+        <p class="section-kicker">Keynote Speakers</p>
+        <h2 class="section-title">Voices from the frontlines of Indian education.</h2>
+        <p class="section-intro">Three educators, institution builders, and mentors sharing hard-won lessons from years of shaping schools, teachers, and student outcomes.</p>
+
+        <div class="speaker-grid">
+          <article class="speaker-card">
+            <div class="speaker-image">
+              <img src="speaker.jpg" alt="Keynote speaker at an education leadership event" />
+            </div>
+            <div class="speaker-content">
+              <h3 class="speaker-name">Dr. Ananya Mehra</h3>
+              <p class="speaker-role">Curriculum Innovator</p>
+              <p class="speaker-bio">A celebrated school leader with over 25 years of experience, Dr. Mehra is known for transforming academic culture through inclusive learning models, teacher mentorship, and curriculum innovation.</p>
+            </div>
+          </article>
+
+          <article class="speaker-card">
+            <div class="speaker-image">
+              <img src="speaker.jpg" alt="Keynote speaker addressing an audience" />
+            </div>
+            <div class="speaker-content">
+              <h3 class="speaker-name">Mr. Raghavendra Iyer</h3>
+              <p class="speaker-role">School Systems Strategist</p>
+              <p class="speaker-bio">An award-winning administrator, Mr. Iyer has helped modernise school operations across India, with a focus on institutional efficiency, parent communication, and future-ready governance.</p>
+            </div>
+          </article>
+
+          <article class="speaker-card">
+            <div class="speaker-image">
+              <img src="speaker.jpg" alt="Educator speaking at a panel discussion" />
+            </div>
+            <div class="speaker-content">
+              <h3 class="speaker-name">Ms. Kavita Bhandari</h3>
+              <p class="speaker-role">Principal Mentor</p>
+              <p class="speaker-bio">A respected educator and mentor, Ms. Bhandari has trained hundreds of teachers and school heads, building leadership programmes around classroom culture and student-centred pedagogy.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <img src="Logo.png" alt="School for Schools Summit 2026" />
+      <h2>See you at the summit.</h2>
+      <p>An invite-only gathering for educators who have conquered many peaks, and are looking for the next one.</p>
+    </section>
   </main>
 
   <script>
@@ -218,7 +728,7 @@
 
     function updateParallax() {
       const y = window.scrollY || window.pageYOffset;
-      root.style.setProperty('--scroll', Math.min(y, 1200).toFixed(2));
+      root.style.setProperty('--scroll', Math.min(y, 1400).toFixed(2));
       ticking = false;
     }
 
